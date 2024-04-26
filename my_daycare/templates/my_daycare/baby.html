@@ -1,0 +1,92 @@
+{% extends "my_daystar/base.html" %}<!---->
+{% block body %}
+<h3>All Babies</h3>
+<div class="row">
+  <div class="col-12">
+    {% if babies %}
+    <div class="card border-light mb-3 ms-4" >
+      <div class="card-header">
+        <i class="fa-solid fa-bars fa-lg"></i>Baby Records
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <div class="table-responsive">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">baby_id</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">TimeIn</th>
+                    <th scope="col">TimeOut</th>
+                    <th scope="col">Actions</th>
+                    
+                  </tr>
+                </thead>
+                <tbody> 
+                  {% for baby in babies %}
+                    <tr>
+                      <td>{{baby.baby_id}}</td>
+                      <td>{{baby.first_name}}</td>
+                      <td>{{baby.last_name}}</td>
+                      <td>{{baby.gender}}</td>
+                      <td>{{baby.age}}</td>
+                      <td>{{baby.timeIn}}</td>
+                      <td>{{baby.timeOut}}</td>
+                      <td>
+                        <button type="button" class=" btn btn-success me-1" href="{% url 'view_baby' baby.id %}"data-bs-toggle="modal"data-bs-target="#myModal{{baby.id}}">
+                          <i class="fa-solid fa-circle-info fa-lg"></i>
+                        </button>
+                        <!--Modal component-->
+                        <div class="modal"id="myModal{{baby.id}}"tabindex="-1" aria-labelledby="myModalLabel1"aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">
+                                  Baby {{ baby.first_name}} {{ baby.last_name}}
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true"></span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <ul class="list-unstyled">
+                                  <li>Baby Number: <strong>Baby:{{baby.baby_id}}</strong></li>
+                                  <li>First Name: <strong>{{baby.first_name}}</strong></li>
+                                  <li>Last Name: <strong>{{baby.last_name}}</strong></li>
+                                  <li>Gender: <strong>{{baby.gender}}</strong></li>
+                                  <li>Age: <strong> {{baby.age}}</strong></li>
+                                  <li>TimeIn: <strong>{{baby.timeIn}}</strong></li>
+                                  <li>TimeOut: <strong>{{baby.timeOut}}</strong></li>
+
+                                  
+                                </ul>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <a class="btn btn-warning me-1" href="{% url 'edit' baby.id %}">
+                          <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                        </a>
+                      </td>
+
+                    </tr>
+                  {% endfor %}
+              </table>
+            </div>
+          </p>
+        </div>
+      </div>
+      {% else %}
+      <h5 class ="alert alert-primary ms-4 me-4">No Baby Records</h5>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

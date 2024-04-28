@@ -4,7 +4,7 @@
 {% if success %}
     <div class = "alert alert-success" role="alert">
         The New Baby been added successfully.
-        <a href="{% url 'index' %}" class="alert-link">Go to Home Page.</a>
+        <a href="#" class="alert-link">Go to Home Page.</a>
     </div>
 {% else %}
     <div class="row justify-content-center">
@@ -14,7 +14,7 @@
                     <i class="fa-solid fa-address-card fa-lg"></i>
                 </div>
                 <div class="card-body">
-                    <form action="{% url 'add' %}" method="POST">
+                    <form action="#" method="POST">
                         <div>
                             <label for="exampleSelect1" class="form-label mt-4">Payment Category</label>
                             <select class="form-select" id="exampleSelect1">
@@ -32,7 +32,7 @@
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button type="submit"class="btn btn-primary">Add</button>
-                        <a href="{% url 'index' %}"class="btn btn-secondary">Cancel</a>
+                        <a href="#"class="btn btn-secondary">Cancel</a>
 
                     </form>
                 </div>

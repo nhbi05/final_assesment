@@ -1,34 +1,30 @@
-{% extends "my_dayare/base.html" %}
+{% extends "my_daycare/base.html" %}
+{% load static %}
 {% block content %}
-<form>
-    <fieldset>
-      <legend>Legend</legend>
-      <div class="row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-          <input type="text" readonly="" class="form-control-plaintext" id="staticEmail" value="email@example.com">
+<h3 class="text-center m-4">Add Baby</h3>
+    {% if success %}
+        <div class = "alert alert-success" role="alert">
+            The New Baby been added successfully.
+            <a href="{% url 'index' %}" class="alert-link">Go to Home Page.</a>
         </div>
-      </div>
-      <div>
-        <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div>
-        <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
-      </div>
-      <div>
-        <label for="exampleSelect1" class="form-label mt-4">GENDER</label>
-        <select class="form-select" id="exampleSelect1">
-          <option>Female</option>
-          <option>Male</option>
-          <!--name of the baby, gender, age,
-          location, name of the person brought the baby, time of arrival, parents names, fee in Ugx,
-          period of stay, baby number.-->
-          
-        </select>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-  </form>
+    {% else %}
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card border-light mb-3">
+                    <div class="card-header">
+                        <i class="fa-solid fa-address-card fa-lg"></i>Baby Registration
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'baby_reg' %}" method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit"class="btn btn-primary">Add</button>
+                            <a href="{% url 'index' %}"class="btn btn-secondary">Cancel</a>
+
+                        </form>
+                    </div>
+                </div>   
+            </div>
+        </div>  
+    {% endif %}  
 {% endblock %}

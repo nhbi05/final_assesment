@@ -1,12 +1,18 @@
-from django.forms import ModelForm
+from django import forms
 from .models import *
 
-class AddBabeForm(ModelForm):
+class BabyForm(forms.ModelForm):
     class Meta:
-        model = Babe
-        fields = '__all__'
-
-class AddPaymentForm(ModelForm):
-    class Meta:
-        model = Payment
-        fields = '__all__'        
+        model = Baby
+        fields =['c_stay','b_firstname','b_lastname','location','parents_name','gender','age','timeIn','timeOut']
+        labels ={
+            'c_stay': 'baby_id',
+            'b_firstname': 'First Name',
+            'b_lastname': 'Last Name',
+            'location' : 'Location',
+            'parents_name': 'Parents Name',
+            'gender': 'Gender',
+            'age': 'Age',
+            'timeIn': 'TimeIn',
+            'timeOut': 'TimeOut',
+        }

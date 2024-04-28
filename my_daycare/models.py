@@ -13,20 +13,19 @@ class Categorystay(models.Model):
     #meaning it will be reffered to by its name self.name it can also be self.gende or self.age
 
 
-class Babe(models.Model):
+class Baby(models.Model):
         c_stay = models.ForeignKey(Categorystay, on_delete= models.CASCADE,  null= True, blank=True)
-      
-        b_name = models.CharField(max_length=200, null=True, blank=True)
+        b_firstname = models.CharField(max_length=200, null=True, blank=True)
+        b_lastname = models.CharField(max_length=200, null=True, blank=True)
         age = models.IntegerField( null= True, blank=True)
         gender = models.CharField(max_length=10, null=True, blank=True)
         location = models. CharField(max_length=100, null=True, blank=True)
         parents_name = models.CharField(max_length=200, null=True, blank= True )
-        timein =models.DateTimeField( null =True, blank= True)
-        timeout = models.DateTimeField(null = True, 
-        blank=True)
+        timeIn =models.DateTimeField( null =True, blank= True)
+        timeOut = models.DateTimeField(null = True, blank=True)
     
         def __str__(self):
-            return self.b_name
+            return f'Baby:{self.b_firstname}{self.b_lastname}'
 
 class Sitter(models.Model):
         s_name = models.CharField(max_length=200, null=True, blank=True)
@@ -42,7 +41,7 @@ class Sitter(models.Model):
             return self.b_name        
 
 class Payment(models.Model):
-     paye = models.ForeignKey(Babe, on_delete=models.CASCADE, null=True, blank=True)
+     paye = models.ForeignKey(Baby, on_delete=models.CASCADE, null=True, blank=True)
      c_payment = models.ForeignKey(Categorystay,on_delete=models.CASCADE, null = True, blank=True)#linking
      amount= models.FloatField(null= True, blank = True)
      pay_no= models.IntegerField( null=True, blank=True)
@@ -52,7 +51,7 @@ class Payment(models.Model):
           return self.pay_no
 
 class Procurement(models.Model):
-     paye = models.ForeignKey(Babe, on_delete=models.CASCADE, null=True, blank=True)
+     paye = models.ForeignKey(Baby, on_delete=models.CASCADE, null=True, blank=True)
      items= models.IntegerField(null= True, blank = True)
      amount= models.IntegerField( null=True, blank=True)
      currency = models.CharField(default="Ugx", blank=True, null = True,max_length=10)

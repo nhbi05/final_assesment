@@ -9,60 +9,23 @@
             <a href="#" class="alert-link">Go to Home Page.</a>
         </div>
     {% else %}
-    <div class="container">
-        <form id="sitter-form" class="row g-3">
-          <div class="col-md-6">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-          </div>
-          <div class="col-md-6">
-            <label for="location" class="form-label">Location</label>
-            <input type="text" class="form-control" id="location" name="location" required>
-          </div>
-          <div class="col-md-6">
-            <label for="dob" class="form-label">Date of Birth</label>
-            <input type="date" class="form-control" id="dob" name="dob" required>
-          </div>
-          <div class="col-md-6">
-            <label for="gender" class="form-label">Gender</label>
-            <select id="gender" name="gender" class="form-select" required>
-              <option value=""></option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label for="next-of-kin" class="form-label">Next of Kin</label>
-            <input type="text" class="form-control" id="next-of-kin" name="next-of-kin" required>
-          </div>
-          <div class="col-md-6">
-            <label for="nin" class="form-label">NIN</label>
-            <input type="text" class="form-control" id="nin" name="nin" required>
-          </div>
-          <div class="col-md-6">
-            <label for="recommender-name" class="form-label">Recommender’s Name</label>
-            <input type="text" class="form-control" id="recommender-name" name="recommender-name" required>
-          </div>
-          <div class="col-md-6">
-            <label for="religion" class="form-label">Religion</label>
-            <input type="text" class="form-control" id="religion" name="religion">
-          </div>
-          <div class="col-md-6">
-            <label for="level-of-education" class="form-label">Level of Education</label>
-            <input type="text" class="form-control" id="level-of-education" name="level-of-education" required>
-          </div>
-          <div class="col-md-6">
-            <label for="sitter-number" class="form-label">Sitter Number</label>
-            <input type="text" class="form-control" id="sitter-number" name="sitter-number" required>
-          </div>
-          <div class="col-md-6">
-            <label for="contacts" class="form-label">Contacts</label>
-            <input type="tel" class="form-control" id="contacts" name="contacts" required>
-          </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+    <div class="row justify-content-center">
+      <div class="col-6">
+          <div class="card border-light mb-3">
+              <div class="card-header">
+                  <i class="fa-solid fa-address-card fa-lg"></i>Baby Registration
+              </div>
+              <div class="card-body">
+                  <form method="POST">
+                      {% csrf_token %}
+                      {{ form.as_p }}
+                      <button type="submit"class="btn btn-primary">Add</button>
+                      <a href="index/"class="btn btn-secondary">Cancel</a>
+
+                  </form>
+              </div>
+          </div>   
       </div>
+  </div>  
     {% endif %}    
 {% endblock %}

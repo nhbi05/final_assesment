@@ -16,13 +16,15 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">sitter_id</th>
                     <th scope="col">First name</th>
                     <th scope="col">Last name</th>
                     <th scope="col">Gender</th>
                     <th scope="col">Age</th>
-                    <th scope="col">TimeIn</th>
-                    <th scope="col">TimeOut</th>
+                    <th scope="col">Next of Kin</th>
+                    <th scope="col">Recommender's Name</th>
+                    <th scope="col">NIN</th>
+                    <th scope="col">Levelof eduction</th>
+                    <th scope="col">Contact</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -34,8 +36,12 @@
                       <td>{{sitter.last_name}}</td>
                       <td>{{sitter.gender}}</td>
                       <td>{{sitter.age}}</td>
-                      <td>{{sitter.timeIn}}</td>
-                      <td>{{sitter.timeOut}}</td>
+                      <td>{{sitter.next_of_kin}}</td>
+                      <td>{{sitter.recommender_name}}</td>
+                      <td>{{sitter.NIN}}</td>
+                      <td>{{sitter.education_level}}</td>
+                      <td>{{sitter.contact}}</td>
+                      <td>{{sitter.contact}}</td>
                       <td>
                         
                       </td>
@@ -47,7 +53,7 @@
         </div>
       </div>
       {% else %}
-      <h5 class ="alert alert-primary ms-4 me-4">No Baby Records</h5>
+      <h5 class ="alert alert-primary ms-4 me-4">No Sitter Records</h5>
       {% endif %}
     </div>
   </div>

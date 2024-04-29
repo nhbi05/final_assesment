@@ -22,11 +22,13 @@ def index(request):
 
 def sitter(request):
     return render(request , 'my_daycare/sitter.html', {
-        'babies':Sitter.objects.all(),
+        'sitter':Sitter.objects.all(),
     })
 
 def baby(request):
-    return render(request, 'my_daycare/baby.html')
+    return render(request , 'my_daycare/baby.html', {
+        'sitter':Baby.objects.all(),
+    })
 
 def payment(request):
     return render(request, 'my_daycare/payment.html')
@@ -36,10 +38,10 @@ def procurement(request):
 
 #  trying to add babe form
 def AddBaby(request):
-    BabeForm = BabyForm(request.POST)
+    form = BabyForm(request.POST)
     if request.method == 'POST':
-        if BabeForm.is_valid():
-            BabeForm.save()
+        if form.is_valid():
+            form.save()
             return render(request, 'my_daycare/baby_reg.html', {
                 'form': BabyForm(),
                 'success': True,
@@ -58,25 +60,22 @@ def AddBaby(request):
 
 
 def add_sitter(request):
-    message = None
-
-    if request.method == "POST":
-        s_name = request.POST["first_name"]
-        last_name = request.POST["last_name"]
-        email = request.POST["email"]
-        age = request.POST["age"]
-        gender = request.POST["gender"]
-
-        student_obj = Sitter(
-            s_name=s_name,
-            last_name=last_name,
-            email=email,
-            age=age,
-            gender=gender,
-        )
-        student_obj.save()
-        message = "Sitter added successfully"
-        return redirect('sitter_reg')  # Redirect to the add_student page after adding a student
-
-    context = {"message": message}
-    return render(request, "my_daycare/sitter_reg.html", context)
+    form1 = SitterForm(request.POST)
+    if request.method == 'POST':
+        if form1.is_valid():
+            form1.save()
+            return render(request, 'my_daycare/baby_reg.html', {
+                'form1': SitterForm(),
+                'success': True,
+            })
+        else:
+            print ("Form is not valid")
+            return render(request, 'my_daycare/baby_reg.html', {
+              'form1': SitterForm(),
+               'success': False,
+            })
+    else:
+        form1 = SitterForm()
+        return render(request, 'my_daycare/baby_reg.html', {
+            'form1' : SitterForm()
+        })

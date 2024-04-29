@@ -28,21 +28,22 @@ class Baby(models.Model):
             return f'Baby:{self.b_firstname}{self.b_lastname}'
 
 class Sitter(models.Model):
-        s_name = models.CharField(max_length=200, null=True, blank=True)
+        s_firstname = models.CharField(max_length=200, null=True, blank=True)
+        s_lastname = models.CharField(max_length=200, null=True, blank=True)
         s_age = models.IntegerField( null= True, blank=True)
         s_gender = models.CharField(max_length=10, null=True, blank=True)
         s_location = models. CharField( default="Kabalagala",max_length=100, null=True, blank=True)
-        s_parents_name = models.CharField(max_length=200, null=True, blank= True )
-        s_timein =models.DateTimeField( null =True, blank= True)
-        s_timeout = models.DateTimeField(null = True, 
-        blank=True)
+        s_recommenders_name = models.CharField(max_length=200, null=True, blank= True )
+        s_NIN = models.CharField(max_length=200, null=True, blank= True )
+        s_educationlevel= models.CharField(max_length=200, null=True, blank= True )
+        s_contact= models.CharField(max_length=200, null=True, blank= True )
     
         def __str__(self):
             return self.b_name        
 
 class Payment(models.Model):
      paye = models.ForeignKey(Baby, on_delete=models.CASCADE, null=True, blank=True)
-     c_payment = models.ForeignKey(Categorystay,on_delete=models.CASCADE, null = True, blank=True)#linking
+     #c_payment = models.ForeignKey(Categorystay,on_delete=models.CASCADE, null = True, blank=True)#linking
      amount= models.FloatField(null= True, blank = True)
      pay_no= models.IntegerField( null=True, blank=True)
      currency = models.CharField(default="Ugx", blank=True, null = True,max_length=10)

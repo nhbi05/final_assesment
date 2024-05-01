@@ -38,8 +38,8 @@ def procurement(request):
 
 #  trying to add babe form
 def AddBaby(request):
-    form = BabyForm(request.POST)
     if request.method == 'POST':
+        form = BabyForm(request.POST)
         if form.is_valid():
             form.save()
             return render(request, 'my_daycare/baby_reg.html', {
@@ -47,16 +47,16 @@ def AddBaby(request):
                 'success': True,
             })
         else:
-            print ("Form is not valid")
+            print("Form is not valid")
             return render(request, 'my_daycare/baby_reg.html', {
-              'form': BabyForm(),
-               'success': False,
+                'form': form,  # Pass the invalid form back to the template
+                'success': False,
             })
     else:
         form = BabyForm()
-        return render(request, 'my_daycare/baby_reg.html', {
-            'form' : BabyForm()
-        })
+    return render(request, 'my_daycare/baby_reg.html', {
+        'form': form
+    })
 
 
 def add_sitter(request):
@@ -64,18 +64,18 @@ def add_sitter(request):
     if request.method == 'POST':
         if form1.is_valid():
             form1.save()
-            return render(request, 'my_daycare/baby_reg.html', {
+            return render(request, 'my_daycare/sitter_reg.html', {
                 'form1': SitterForm(),
                 'success': True,
             })
         else:
             print ("Form is not valid")
-            return render(request, 'my_daycare/baby_reg.html', {
+            return render(request, 'my_daycare/sitter_reg.html', {
               'form1': SitterForm(),
                'success': False,
             })
     else:
         form1 = SitterForm()
-        return render(request, 'my_daycare/baby_reg.html', {
+        return render(request, 'my_daycare/sitter_reg.html', {
             'form1' : SitterForm()
         })

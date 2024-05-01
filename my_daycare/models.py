@@ -33,13 +33,14 @@ class Sitter(models.Model):
         s_age = models.IntegerField( null= True, blank=True)
         s_gender = models.CharField(max_length=10, null=True, blank=True)
         s_location = models. CharField( default="Kabalagala",max_length=100, null=True, blank=True)
+        s_nextofkin = models. CharField( max_length=100, null=True, blank=True)
         s_recommenders_name = models.CharField(max_length=200, null=True, blank= True )
         s_NIN = models.CharField(max_length=200, null=True, blank= True )
         s_educationlevel= models.CharField(max_length=200, null=True, blank= True )
         s_contact= models.CharField(max_length=200, null=True, blank= True )
     
         def __str__(self):
-            return self.b_name        
+            return f'Sitter:{self.s_firstname}{self.s_lastname}'       
 
 class Payment(models.Model):
      paye = models.ForeignKey(Baby, on_delete=models.CASCADE, null=True, blank=True)
